@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 module.exports = {
   entry: [
-    './src/index.js'
+    './index.js'
   ],
   output: {
       path: path.resolve(__dirname, 'bin'),
