@@ -6,9 +6,9 @@ import io from 'socket.io-client';
 var socket = io('http://localhost:3000');
 
 socket.on('connect', function(s){
-  // s.on('chat message', function(msg){
-  //   console.log('message: ' + msg);
-  // });
+  socket.on('chat message', function(msg){
+    console.log('message: ' + msg);
+  });
 });
 
 class Root extends Component{

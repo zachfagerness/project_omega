@@ -1,45 +1,18 @@
-//
-// var app = require('express')();
-// var http = require('http').Server(app);
-// var io = require('socket.io')(http);
-// var port = process.env.PORT || 3000;
-//
-// app.get('/', function(req, res){
-//   res.sendFile(__dirname + '/index.html');
-// });
-//
-// io.on('connection', function(socket){
-//   socket.on('chat message', function(msg){
-//     io.emit('chat message', msg);
-//   });
-// });
-//
-// http.listen(port, function(){
-//   console.log('listening on *:' + port);
-// });
 
-const express = require('express');
 const path = require('path');
-const app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
+var server = require('./server.js');
+var socket = require ('./socket.js');
 var monk = require('monk');
 
-app.use(express.static('../client/bin'));
-app.use(express.static('../client/css'));
-app.get('/', function(req, res) {
+server.app.use(server.express.static('../client/bin'));
+server.app.use(server.express.static('../client/css'));
+server.app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/www/'));
 });
 
 
 
 
-io.on('connection', function(socket){
-  socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
-  });
-  console.log('a user connected');
-});
 
 
 var db = monk('mongodb://localhost:27017/test');
@@ -51,4 +24,4 @@ collection.find({},function(e,docs){
 
 
 
-http.listen(3000, () => console.log('Port 3000'));
+server.http.listen(3000, () => console.log('Port 3000'));
