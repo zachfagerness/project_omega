@@ -4,15 +4,29 @@
   "description": "server for project omega",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pro": "node_modules/.bin/webpack --config webpack.pro.js",
+    "dev": "node_modules/.bin/webpack-dev-server --config webpack.dev.js"
   },
   "author": "zach fagerness",
   "license": "MIT",
   "dependencies": {
     "asyncawait": "^1.0.6",
     "express": "^4.16.2",
+    "fs": "0.0.1-security",
     "mongodb": "^3.0.0-rc0",
     "monk": "^6.0.5",
+    "net": "^1.0.2",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "socket.io-client": "^2.0.4",
     "socketio": "^1.0.0"
+  },
+  "devDependencies": {
+    "webpack": "^3.10.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "webpack-dev-server": "^2.9.5"
   }
 }

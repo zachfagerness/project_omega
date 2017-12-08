@@ -4,7 +4,7 @@ import {render} from 'react-dom';
 export default class Home extends Component{
   render(){
     return(
-      <div>asdasd</div>
+      <div>vxvvvv</div>
     )
   }
 };

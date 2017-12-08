@@ -11,7 +11,7 @@ socket.on('connect', function(s){
   });
 });
 
-class Root extends Component{
+export default class Root extends Component{
   render(){
     return(
       <Home />
