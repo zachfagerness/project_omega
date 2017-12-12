@@ -1,6 +1,11 @@
 const server = require('./init/server.js');
 const io = require ('./init/socket.js');
-const db = require('./init/db.js');
+const mongo = require('./init/db.js');
+mongo.connect().then(function (db) {
+  //console.log(dbk);
+
+})
+
 const path = require('path');
 
 server.app.use(server.express.static('../client/bin'));
@@ -9,20 +14,41 @@ server.app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/www/'));
 });
 server.app.get('/*', function(req, res) {
-    // Prepare the context
-    console.log('sda');
     res.redirect('/');
 });
 
 io.on('connection', function(socket){
   console.log(socket.id);
   socket.on('chat message', function(msg){
-    io.emit('chat message', msg);
+    socket.emit('chat message', msg);
   });
+  socket.on('login', function(loginObj){
 
+    mongo.findUser(loginObj.username).then(function (res) {
+      console.log(res);
+      socket.emit('login', true);
+    });
+
+    //console.log(msg);
+    //sdsdfccccccdsf
+
+  });
 });
 
 
+
+
+
+// Connection URL
+//setTimeout(function () {
+  // console.log(db);
+
+//}, 200);
+
+
+// insertUser({username:'zach',password:'123'},function (r) {
+//   console.log(r);
+// });
 server.runServer();
 // var express = require('express');
 // var fs = require('fs');

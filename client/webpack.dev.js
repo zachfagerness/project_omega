@@ -8,7 +8,8 @@ module.exports = {
     devServer: {
       hot:true,
       inline:true,
-      contentBase: 'www'
+      contentBase: 'www',
+      port:3333
     },
     output: {
         filename: 'bundle.js'
