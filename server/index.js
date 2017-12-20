@@ -7,32 +7,37 @@ mongo.connect().then(function (db) {
 })
 
 const path = require('path');
-
+var rr = null;
 server.app.use(server.express.static('../client/bin'));
 server.app.use(server.express.static('../client/css'));
 server.app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/../client/www/'));
+    rr = res;
 });
+
+
 server.app.get('/*', function(req, res) {
     res.redirect('/');
 });
 
 io.on('connection', function(socket){
-  console.log(socket.id);
+
+
   socket.on('chat message', function(msg){
     socket.emit('chat message', msg);
   });
+
   socket.on('login', function(loginObj){
-
     mongo.findUser(loginObj.username).then(function (res) {
-      console.log(res);
-      socket.emit('login', true);
+      if(loginObj.password === res.password){
+        //rr.redirect('/account');
+        socket.emit('login', true);
+      }
+
     });
-
-    //console.log(msg);
-    //sdsdfccccccdsf
-
   });
+
+
 });
 
 

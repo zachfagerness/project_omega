@@ -19,6 +19,7 @@
   "homepage": "https://github.com/zachfagerness/project_omega#readme",
   "dependencies": {
     "css-loader": "^0.28.7",
+    "eslint": "^4.13.1",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "socket.io-client": "^2.0.4",

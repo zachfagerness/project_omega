@@ -1,19 +1,12 @@
-import io from 'socket.io-client';
-
-var socket = io('http://localhost:3000');
-
-socket.on('connect', function(s){
-  socket.on('chat message', function(msg){
-    console.log('message: ' + msg);
-  });
-});
+import IO from '../../init/socket.js';
 
 
 class CheckDb {
   checkLogin(loginObj) {
 
-    socket.emit('login',loginObj);
-    socket.on('login', function(msg){
+    IO.socket.emit('login',loginObj);
+      IO.socket.on('login', function(msg){
+
         return true;
     });
 
